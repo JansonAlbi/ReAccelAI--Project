@@ -307,7 +307,7 @@ p {
   display: inline-block;
   zoom: 1;
   display: inline;
-  top:15px;
+  top:35px;
 }
 .fh5co-main-nav .fh5co-menu-1 a:hover, .fh5co-main-nav .fh5co-menu-1 a:focus, .fh5co-main-nav .fh5co-menu-1 a:active,
 .fh5co-main-nav .fh5co-menu-2 a:hover,
@@ -623,7 +623,7 @@ p {
 
 #index_signin_button{
 
-  margin-left: 700px;
+  margin-left: 600px;
   border-radius: 12px;
   color: #dbe6de;
   margin-top: 9px;
@@ -633,6 +633,11 @@ p {
   border: white;
 
 }
+#index_signin_button:hover {
+  background-color: #0056b3;
+}
+
+
 
 .reaccel_signin_button{
   
@@ -644,6 +649,10 @@ p {
   height: 50px;
   border: white;
 }
+.reaccel_signin_button:hover {
+  background-color: #0056b3;
+}
+
 
 @media screen and (max-width: 768px) {
   #fh5co-featured .fh5co-grid .arrow-left:before, #fh5co-featured .fh5co-grid .arrow-left::before {
