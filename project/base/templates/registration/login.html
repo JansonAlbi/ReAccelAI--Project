@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet", type = "text/css", href="{%static 'base/css1/style.css'%}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <title>ReaccelAI</title>
     <script>
         // Function to toggle between sign up and sign in forms
@@ -41,7 +44,8 @@
 </head>
 
 <body>
-
+    <img id="logo_img" src="{%static 'base/images/logo_no_bg.png'%}" alt="logo image was not displaying">
+<div class="body">
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form method="POST">
@@ -55,8 +59,19 @@
                 <span>or use your email for registeration</span>
                 <input type="text" name = "uname" id = "uname" placeholder="Name"  pattern="(?=.*^[a-zA-Z-' ]+$)" title="Name can only contain upper case letters, lower case letters, spaces, and possibly hyphens or apostrophes" required>
                 <input type="email" name = "email" id = "email" placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-                <input type="password" name = "pass1" id = "pass1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long" required>
+                <input type="password" id="signup_password" name = "pass1" id = "pass1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long" required>
 
+                <!--eye icon-->
+		     <span class="toggle-password" onclick="togglePasswordVisibility()">
+                <i id="hide-eye" class="fas fa-eye-slash"></i>
+                <i id="reveal-eye" class="fas fa-eye" style="display: none;"></i>
+             </span>
+               <input id="confirm_password" type="password" placeholder="Confirm Password">
+            <span class="confirm_toggle-password" onclick="confirmPasswordVisibility()">
+                <i id="confirm_hide-eye" class="fas fa-eye-slash"></i>
+                <i id="confirm_reveal-eye" class="fas fa-eye" style="display: none;"></i>
+             </span>
+            
                 <!-- otp-->
                 <div class="otp-form">
                     <div class="phone-input" id="otpinput">
@@ -91,7 +106,14 @@
                 <span>or use your email password</span>
                 <div class="myinput">
                 <input name = "email1" id = "email1" type="email" placeholder="Email">
-                <input name = "pass2" id = "pass2" type="password" placeholder="Password">
+                <input name = "pass2"  id="signin_password" id="pass2" type="password" placeholder="Password">
+
+                <!--eye icon-->
+                <span class="signin_toggle-password" onclick="signintogglePasswordVisibility()">
+                    <i id="signin_hide-eye" class="fas fa-eye-slash"></i>
+                    <i id="signin_reveal-eye" class="fas fa-eye" style="display: none;"></i>
+                </span>
+
                 </div>
                 <a href="#">Forgot Your Password?</a>
                 <button class="Sign_In">Sign In</button>
@@ -117,8 +139,11 @@
             </div>
         </div>
     </div>
-
+</div>
     <script type="text/javascript" src="{%static 'base/js1/script.js' %}"></script>
+    <!-- Font Awesome JS 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-6EuOsX7eVcmlc/Z77ZonUOqcF5sBRivNBDP5q4OGHn3DL/pSNlUQNOsBdET+oE/M" crossorigin="anonymous"></script>
+-->
 </body>
 
 </html>

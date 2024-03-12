@@ -7,7 +7,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+#logo_img{
+
+    position: fixed;
+        top: 10px;
+        left: 10px; 
+        width: 200px; 
+        height: auto;
+}
+
+
+.body{
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
@@ -319,3 +329,37 @@ body{
     margin-top: 0px;
     cursor: pointer;
   }
+
+
+  
+/*eye icon for password field*/
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 53%;
+    left: 310px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+#hide-eye, #reveal-eye, #signin_reveal-eye, #signin_hide-eye,#confirm_hide-eye,#confirm_reveal-eye{
+font-size:15px;
+}
+
+.signin_toggle-password{
+    position: absolute;
+    top: 56.5%;
+    left: 310px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.confirm_toggle-password{
+    position: absolute;
+    top: 61.5%;
+    left: 310px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
