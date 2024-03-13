@@ -57,7 +57,7 @@
 }
 
 .Sign_Up,.Sign_In{
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -84,7 +84,9 @@
 }
 
 .container button:hover{
-    background-color: #00a1ff;
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
 }
 
 #login,#register{
@@ -304,7 +306,7 @@
   }
   
   #sendOTP{
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     padding: 5px 25px;
@@ -317,7 +319,7 @@
     cursor: pointer;
   }
   #verifyotp{
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     padding: 12px 25px;
@@ -330,6 +332,16 @@
     cursor: pointer;
   }
 
+  #sendOTP:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+  #verifyotp:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
 
   
 /*eye icon for password field*/
