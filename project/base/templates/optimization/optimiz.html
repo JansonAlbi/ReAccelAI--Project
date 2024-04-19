@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Machine Learning Web App</title>
+  <link href="{%static 'base/css4/opt_style.css'%}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="upload-section">
+    <label for="class-input">Class 1:</label>
+    <input type="text" class="class-input">
+    <input type="file" class="file-upload" accept=".csv" id="file-upload">
+    <label for="class-input">Class 2:</label>
+    <input type="text" class="class-input">
+    <input type="file" class="file-upload" accept=".csv">
+    
+  </div>
+  <div class="new-class">
+    <button id="new-class-button" class="add-new-section-button">Add New Section</button>
+  </div>
+  <div class="train-section">
+    <button id="train-button">Train</button>
+    <div class="dropdown">
+      <button class="dropdown-button">Advanced Options</button>
+      <div class="dropdown-content">
+        <label for="epochs-input">Epochs:</label>
+        <input type="number" id="epochs-input" min="1" value="1">
+        <label for="learning-rate-input">Learning Rate:</label>
+        <input type="number" id="learning-rate-input" step="0.01" value="0.01">
+        <label for="batch-size-input">Batch Size:</label>
+        <input type="number" id="batch-size-input" min="1" value="1">
+      </div>
+    </div>
+  </div>
+
+  <div class="inference-section">
+    <button id="inference-button">Run Inference</button>
+    <div id="camera-module"></div>
+  </div>
+
+  <script src="{%static 'base/js3/opt_script.js' %}"></script>
+</body>
+
+</html>

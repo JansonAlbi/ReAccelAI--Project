@@ -49,6 +49,7 @@
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form method="POST">
+                {% csrf_token %}
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="https://mail.google.com/" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -57,16 +58,17 @@
                     <a href="https://www.linkedin.com/" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registeration</span>
-                <input type="text" name = "uname" id = "uname" placeholder="Name"  pattern="(?=.*^[a-zA-Z-' ]+$)" title="Name can only contain upper case letters, lower case letters, spaces, and possibly hyphens or apostrophes" required>
-                <input type="email" name = "email" id = "email" placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
-                <input type="password" id="signup_password" name = "pass1" id = "pass1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long" required>
+                <input type="hidden" name="form_type" value="signup">
+                <input type="text" name = "sign_name" id = "uname" placeholder="Name"  pattern="(?=.*^[a-zA-Z-' ]+$)" title="Name can only contain upper case letters, lower case letters, spaces, and possibly hyphens or apostrophes" required>
+                <input type="email" name = "sign_email" id = "email" placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                <input type="password" id="signup_password" name = "sign_pass" id = "pass1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long" required>
 
                 <!--eye icon-->
 		     <span class="toggle-password" onclick="togglePasswordVisibility()">
                 <i id="hide-eye" class="fas fa-eye-slash"></i>
-                <i id="reveal-eye" class="fas fa-eye" style="display: none;"></i>
+                <i id="reveal-eye"  class="fas fa-eye" style="display: none;"></i>
              </span>
-               <input id="confirm_password" type="password" placeholder="Confirm Password">
+               <input type="password" id="confirm_password" name = "sign_conf_pass"  placeholder="Confirm Password">
             <span class="confirm_toggle-password" onclick="confirmPasswordVisibility()">
                 <i id="confirm_hide-eye" class="fas fa-eye-slash"></i>
                 <i id="confirm_reveal-eye" class="fas fa-eye" style="display: none;"></i>
@@ -77,7 +79,7 @@
                     <div class="phone-input" id="otpinput">
                      <select class="countrycode" id="country-code" data-items-scroll="5">
                     </select>
-                      <input type="tel" name = "phone-number" id="phone-number" placeholder="Phone Number">
+                      <input type="tel" name = "signup_phone_number" id="phone-number" placeholder="Phone Number">
                       <button class="send-otp" id="sendOTP" onclick="sendotp(event)">Send OTP</button>
                     </div>
                     
@@ -96,6 +98,7 @@
         </div>
         <div class="form-container sign-in">
             <form method = "POST">
+                {% csrf_token %}
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="https://mail.google.com/" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -104,9 +107,10 @@
                     <a href="https://www.linkedin.com/" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
+                <input type="hidden" name="form_type" value="login">
                 <div class="myinput">
-                <input name = "email1" id = "email1" type="email" placeholder="Email">
-                <input name = "pass2"  id="signin_password" id="pass2" type="password" placeholder="Password">
+                <input name = "login_email" id = "email1" type="email" placeholder="Email">
+                <input name = "login_pass"  id="signin_password" id="pass2" type="password" placeholder="Password">
 
                 <!--eye icon-->
                 <span class="signin_toggle-password" onclick="signintogglePasswordVisibility()">
