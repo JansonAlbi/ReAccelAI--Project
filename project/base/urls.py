@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
     path("", home, name="home"),
     path("login/", authView, name="login"),
-    path('optimization/', optimiz, name='optimization'),
+    path('login/optimization/', optimiz, name='optimization'),
     #path("style/", styleCSS, name="style"),
 ]
