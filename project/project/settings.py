@@ -9,7 +9,19 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+# Add these import statements at the top
+import os
+import boto3
+from storages.backends.s3boto3 import S3Boto3Storage
 
+
+AWS_STORAGE_BUCKET_NAME = 'reaccelbuck'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_DEFAULT_ACL = 'public-read'  # Optionally set permissions
+
+# Static and media file storage settings for AWS S3
+DEFAULT_FILE_STORAGE = 'base.storage_backends.storage.MediaStorage'
+STATICFILES_STORAGE = 'base.storage_backends.storage.StaticStorage'
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

@@ -5,7 +5,7 @@ document.getElementById("train-button").addEventListener("click", function() {
 document.getElementById("inference-button").addEventListener("click", function() {
   // Inference logic here
 });
-
+//let sectionCounter = 3;
 document.getElementById("new-class-button").addEventListener("click", function() {
   var newUploadSection = document.createElement("div");
   newUploadSection.classList.add("upload-section");
@@ -14,6 +14,7 @@ document.getElementById("new-class-button").addEventListener("click", function()
   newInputFile.type = "file";
   newInputFile.classList.add("file-upload");
   newInputFile.accept = ".csv";
+  newInputFile.name = "file";// + sectionCounter;
 
   var newLabel = document.createElement("label");
   newLabel.htmlFor = "class-input";
@@ -28,4 +29,5 @@ document.getElementById("new-class-button").addEventListener("click", function()
   newUploadSection.appendChild(newLabel);
   newUploadSection.appendChild(newInputText);
   newUploadSection.appendChild(newInputFile);
+  //sectionCounter++; 
 });

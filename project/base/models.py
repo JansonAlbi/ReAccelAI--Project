@@ -12,3 +12,11 @@ class User_info(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.email
+    
+
+
+class UploadedFile(models.Model):
+    file = models.FileField(upload_to='uploads/')
+
+    class Meta:
+        app_label = 'file_upload'  # Add this line to specify the app_label

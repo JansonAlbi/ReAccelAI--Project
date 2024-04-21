@@ -5,12 +5,21 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.hashers import check_password
 import uuid
+from django.shortcuts import render, redirect
+from .models import UploadedFile
 
 # Create your views here.
 def home(request):
     return render(request,"landing_page/index.html")
 
 def optimiz(request):
+    #if request.method == 'POST':
+     #   files = request.FILES.getlist('file')
+    #    for file in files:
+    #        uploaded_file = UploadedFile(file=request.FILES['file'])
+     #       uploaded_file.save()
+ #   else:
+      #  return HttpResponse('file_upload failed')
     return render(request,"optimization/optimiz.html")
 
 def authView(request):

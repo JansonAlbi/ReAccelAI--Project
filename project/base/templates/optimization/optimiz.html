@@ -10,20 +10,22 @@
 </head>
 
 <body>
+{% csrf_token %}
+<form method="POST">
   <div class="upload-section">
     <label for="class-input">Class 1:</label>
     <input type="text" class="class-input">
-    <input type="file" class="file-upload" accept=".csv" id="file-upload">
+    <input type="file" class="file-upload" accept=".csv" id="file-upload" name="file">
     <label for="class-input">Class 2:</label>
     <input type="text" class="class-input">
-    <input type="file" class="file-upload" accept=".csv">
+    <input type="file" class="file-upload" accept=".csv" name="file">
     
   </div>
   <div class="new-class">
     <button id="new-class-button" class="add-new-section-button">Add New Section</button>
   </div>
   <div class="train-section">
-    <button id="train-button">Train</button>
+    <button id="train-button" type="submit">Train</button>
     <div class="dropdown">
       <button class="dropdown-button">Advanced Options</button>
       <div class="dropdown-content">
@@ -41,7 +43,7 @@
     <button id="inference-button">Run Inference</button>
     <div id="camera-module"></div>
   </div>
-
+</form>
   <script src="{%static 'base/js3/opt_script.js' %}"></script>
 </body>
 
