@@ -14,7 +14,8 @@ import os
 import boto3
 from storages.backends.s3boto3 import S3Boto3Storage
 
-
+AWS_ACCESS_KEY_ID = 'AKIAZI2LJBBMG3X5WKQO'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'reaccelbuck'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_DEFAULT_ACL = 'public-read'  # Optionally set permissions
