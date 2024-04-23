@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'ReaccelAI',
         'USER': 'ReaccelAI',
         'PASSWORD': 'ReaccelAIpass',
-        'HOST': 'reaccelaidb-1.c9w6mgcaybud.ap-south-1.rds.amazonaws.com',
+        'HOST': 'reacceldb-1.cdsceo6w29vs.ap-southeast-2.rds.amazonaws.com',
         'PORT': '3306',  # MySQL default port
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
