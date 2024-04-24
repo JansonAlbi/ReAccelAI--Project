@@ -13,16 +13,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 import boto3
 from storages.backends.s3boto3 import S3Boto3Storage
-
-AWS_ACCESS_KEY_ID = 'AKIAZI2LJBBMG3X5WKQO'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'reaccelbuck'
-AWS_S3_REGION_NAME = 'us-east-1'
+from base.storage_backends.storage import StaticStorage,MediaStorage
+AWS_ACCESS_KEY_ID = 'AKIAW3MD65MIJ37CPITO'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'datasets-storage-reaccelai'
+AWS_S3_REGION_NAME = 'ap-southeast-2'
 AWS_DEFAULT_ACL = 'public-read'  # Optionally set permissions
 
 # Static and media file storage settings for AWS S3
 DEFAULT_FILE_STORAGE = 'base.storage_backends.storage.MediaStorage'
-STATICFILES_STORAGE = 'base.storage_backends.storage.StaticStorage'
+"""STATICFILES_STORAGE = 'base.storage_backends.storage.StaticStorage'"""
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
