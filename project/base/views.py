@@ -1,23 +1,66 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
+from .models import User_info
+from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.hashers import check_password
+import uuid
+from django.shortcuts import render, redirect
+from .models import UploadedFile
 
 # Create your views here.
 def home(request):
     return render(request,"landing_page/index.html")
+
+def optimiz(request):
+    #if request.method == 'POST':
+     #   files = request.FILES.getlist('file')
+    #    for file in files:
+    #        uploaded_file = UploadedFile(file=request.FILES['file'])
+     #       uploaded_file.save()
+ #   else:
+      #  return HttpResponse('file_upload failed')
+    return render(request,"optimization/optimiz.html")
+
 def authView(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('form_type')
+        if form_type == 'signup':
+            name = request.POST.get('sign_name')
+            email = request.POST.get('sign_email')
+            password = request.POST.get('sign_pass')
+            confirm_password = request.POST.get('sign_conf_pass')
+            phone_no=request.POST.get('signup_phone_number')
 
-    if request.method == "POST":
-        username = request.POST['uname']
-        email = request.POST['email']
-        pass1 = request.POST['pass1']
-        phoneno = request.POST['phone-number']
+            if password == confirm_password:
+                hashed_password = make_password(password)
+                reaccelai_id = str(uuid.uuid4())
+                while User_info.objects.filter(reaccelai_id=reaccelai_id).exists():
+                    reaccelai_id = str(uuid.uuid4())
+                new_user = User_info(reaccelai_id=reaccelai_id,name=name, email=email,password=hashed_password,phone_number=phone_no)
+                new_user.save()
+                return HttpResponse('Signup successful!')
+            else:
+                return HttpResponse('Passwords do not match. Please try again.')
+        elif form_type == 'login':
+            email = request.POST.get('login_email')
+            password = request.POST.get('login_pass')
+            try:
+                user = User_info.objects.get(email=email)
+                # Check if the provided password matches the hashed password
+                if check_password(password, user.password):
+                    request.session['user_id'] = str(user.reaccelai_id)
+                    #return redirect('home')  # Redirect to home page after successful login
+                    #return HttpResponse('Login successful!')
+                    return render(request,"dashboard/dashboard.html")
+                else:
+                    error_message = "Invalid email or password."
+                    return render(request, 'login.html', {'error_message': error_message})
+            except User_info.DoesNotExist:
+                error_message = "User with this email does not exist."
+                return render(request, 'login.html', {'error_message': error_message})
+    else:
+        
+        return render(request, "registration/login.html")
 
-        user1 = User.objects.create_user(username, email, pass1)
-        user1.phone_number = phoneno
-        user1.save()
 
-        #return redirect('login')
-
-        messages.success(request,"Your Account Has Been Successfully Created")
-    return render(request, "registration/login.html")

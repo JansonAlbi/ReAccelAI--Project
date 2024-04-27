@@ -100,3 +100,55 @@ otp_in.innerHTML+=otp
   }
 
 */
+
+/*eye icon for signup password field*/
+function togglePasswordVisibility() {
+  var passwordInput = document.getElementById("signup_password");
+  var hideEyeIcon = document.getElementById("hide-eye");
+  var revealEyeIcon = document.getElementById("reveal-eye");
+
+  if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      hideEyeIcon.style.display = "none";
+      revealEyeIcon.style.display = "inline";
+  } else {
+      passwordInput.type = "password";
+      hideEyeIcon.style.display = "inline";
+      revealEyeIcon.style.display = "none";
+  }
+}
+
+/*eye icon for signin password field*/
+function signintogglePasswordVisibility() {
+  var passwordInput = document.getElementById("signin_password");
+  var hideEyeIcon = document.getElementById("signin_hide-eye");
+  var revealEyeIcon = document.getElementById("signin_reveal-eye");
+
+  if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      hideEyeIcon.style.display = "none";
+      revealEyeIcon.style.display = "inline";
+  } else {
+      passwordInput.type = "password";
+      hideEyeIcon.style.display = "inline";
+      revealEyeIcon.style.display = "none";
+  }
+}
+
+/*eye icon for confirm password field*/
+function confirmPasswordVisibility() {
+  var passwordInput = document.getElementById("confirm_password");
+  var hideEyeIcon = document.getElementById("confirm_hide-eye");
+  var revealEyeIcon = document.getElementById("confirm_reveal-eye");
+
+  if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      hideEyeIcon.style.display = "none";
+      revealEyeIcon.style.display = "inline";
+  } else {
+      passwordInput.type = "password";
+      hideEyeIcon.style.display = "inline";
+      revealEyeIcon.style.display = "none";
+  }
+}
+

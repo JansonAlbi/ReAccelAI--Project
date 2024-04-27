@@ -7,7 +7,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+#logo_img{
+
+    position: fixed;
+        top: 10px;
+        left: 10px; 
+        width: 200px; 
+        height: auto;
+}
+
+
+.body{
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
@@ -47,7 +57,7 @@ body{
 }
 
 .Sign_Up,.Sign_In{
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -74,7 +84,9 @@ body{
 }
 
 .container button:hover{
-    background-color: #00a1ff;
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
 }
 
 #login,#register{
@@ -294,7 +306,7 @@ body{
   }
   
   #sendOTP{
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     padding: 5px 25px;
@@ -307,7 +319,7 @@ body{
     cursor: pointer;
   }
   #verifyotp{
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
     padding: 12px 25px;
@@ -319,3 +331,47 @@ body{
     margin-top: 0px;
     cursor: pointer;
   }
+
+  #sendOTP:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+  #verifyotp:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+
+  
+/*eye icon for password field*/
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 53%;
+    left: 310px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+#hide-eye, #reveal-eye, #signin_reveal-eye, #signin_hide-eye,#confirm_hide-eye,#confirm_reveal-eye{
+font-size:15px;
+}
+
+.signin_toggle-password{
+    position: absolute;
+    top: 56.5%;
+    left: 310px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.confirm_toggle-password{
+    position: absolute;
+    top: 61.5%;
+    left: 310px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

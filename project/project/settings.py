@@ -9,7 +9,20 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+# Add these import statements at the top
+import os
+import boto3
+from storages.backends.s3boto3 import S3Boto3Storage
+from base.storage_backends.storage import StaticStorage,MediaStorage
+AWS_ACCESS_KEY_ID = 'AKIAW3MD65MIJ37CPITO'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'datasets-storage-reaccelai'
+AWS_S3_REGION_NAME = 'ap-southeast-2'
+AWS_DEFAULT_ACL = 'public-read'  # Optionally set permissions
 
+# Static and media file storage settings for AWS S3
+DEFAULT_FILE_STORAGE = 'base.storage_backends.storage.MediaStorage'
+"""STATICFILES_STORAGE = 'base.storage_backends.storage.StaticStorage'"""
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,8 +90,16 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ReaccelAI',
+        'USER': 'ReaccelAI',
+        'PASSWORD': 'ReaccelAIpass',
+        'HOST': 'reacceldb-1.cdsceo6w29vs.ap-southeast-2.rds.amazonaws.com',
+        'PORT': '3306',  # MySQL default port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
+
     }
 }
 
@@ -107,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
