@@ -44,12 +44,20 @@
 </head>
 
 <body>
+{% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <img id="logo_img" src="{%static 'base/images/logoNobgBlack.png'%}" alt="logo image was not displaying">
 <div class="body">
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form method="POST">
                 {% csrf_token %}
+                {{ form.as_p }}
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="https://mail.google.com/" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>

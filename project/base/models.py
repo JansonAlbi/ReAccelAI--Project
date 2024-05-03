@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 import uuid
 
 # Create your models here.
@@ -15,8 +16,10 @@ class User_info(models.Model):
     
 
 
-class UploadedFile(models.Model):
-    file = models.FileField(upload_to='uploads/')
+class Login_history(models.Model):
+    user_info = models.ForeignKey(User_info, on_delete=models.CASCADE)
+    logged_at = models.DateTimeField(default=timezone.now)
 
-    class Meta:
-        app_label = 'file_upload'  # Add this line to specify the app_label
+    def __str__(self):
+        return self.email
+    

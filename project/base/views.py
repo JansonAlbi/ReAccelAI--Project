@@ -1,13 +1,14 @@
 from django.shortcuts import redirect, render
-from .models import User_info
+from .models import User_info,Login_history
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.hashers import check_password
 import uuid
 from django.shortcuts import render, redirect
-from .models import UploadedFile
 
+from storages.backends.s3boto3 import S3Boto3Storage
+from django.contrib.auth import authenticate, login
 # Create your views here.
 def home(request):
     return render(request,"landing_page/index.html")
@@ -39,7 +40,10 @@ def authView(request):
                     reaccelai_id = str(uuid.uuid4())
                 new_user = User_info(reaccelai_id=reaccelai_id,name=name, email=email,password=hashed_password,phone_number=phone_no)
                 new_user.save()
-                return HttpResponse('Signup successful!')
+                #return HttpResponse('Signup successful!')
+                #return render(request, "registration/signupSuccessful.html")
+                messages.success(request, 'Signup successful!')
+                return render(request, 'registration/login.html', {'form': User_info()})
             else:
                 return HttpResponse('Passwords do not match. Please try again.')
         elif form_type == 'login':
@@ -50,9 +54,14 @@ def authView(request):
                 # Check if the provided password matches the hashed password
                 if check_password(password, user.password):
                     request.session['user_id'] = str(user.reaccelai_id)
+                    """if user is not None:
+                        # Log the user in
+                        login_hist=Login_history(user_info=email)  # Store login history
+                        login_hist.save()"""
                     #return redirect('home')  # Redirect to home page after successful login
                     #return HttpResponse('Login successful!')
-                    return render(request,"dashboard/dashboard.html")
+                    #return render(request,"dashboard/dashboard.html")
+                    return index(request)
                 else:
                     error_message = "Invalid email or password."
                     return render(request, 'login.html', {'error_message': error_message})
@@ -62,5 +71,103 @@ def authView(request):
     else:
         
         return render(request, "registration/login.html")
+
+
+from django.shortcuts import render
+
+# Create your views here.
+def index(request):
+    return render(request, 'dashboard/index.html')
+
+
+def ModelCreation(request):
+    if request.method == 'POST':
+        uploaded_files = request.FILES.getlist('files[]')  # Retrieve list of uploaded files
+        if uploaded_files:
+            s3 = S3Boto3Storage()
+            for uploaded_file in uploaded_files:
+                try:
+                    filename = uploaded_file.name
+                    s3.save(filename, uploaded_file)
+                    # Process each uploaded file as needed
+                except Exception as e:
+                    # Handle errors if file upload fails
+                    return HttpResponse("Error uploading file")
+            return HttpResponse("All files uploaded successfully!")
+        else:
+            return HttpResponse("No files selected for upload.")
+    else:
+        return render(request, 'dashboard/ModelCreation.html')
+
+
+def widgets(request):
+    return render(request, 'dashboard/widgets.html')
+
+
+
+
+def tables(request):
+    return render(request, "dashboard/tables.html")
+
+
+
+
+def grid(request):
+    return render(request, "dashboard/grid.html")
+
+
+
+
+def History(request):
+    data = User_info.objects.values('name', 'created_at')
+    return render(request, "dashboard/History.html", {'data': data})
+
+
+
+
+def form_wizard(request):
+    return render(request, "dashboard/form_wizard.html")
+
+
+
+
+def buttons(request):
+    return render(request, "dashboard/buttons.html")
+
+
+
+
+def icon_material(request):
+    return render(request, "dashboard/icon-material.html")
+
+
+
+
+def icon_fontawesome(request):
+    return render(request, "dashboard/icon-fontawesome.html")
+
+
+
+
+def elements(request):
+    return render(request, "dashboard/elements.html")
+
+
+
+
+def gallery(request):
+    return render(request, "dashboard/gallery.html")
+
+
+
+
+
+def invoice(request):
+    return render(request, "dashboard/invoice.html")
+
+
+
+def chat(request):
+    return render(request, "dashboard/chat.html")
 
 

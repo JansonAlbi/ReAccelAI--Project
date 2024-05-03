@@ -1,0 +1,146 @@
+{% load static %}
+
+{% block html %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{% block head %}
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'base/images/favicon.png' %}"/>
+    <title>ReaccelAI Dashboard</title>
+            <link rel="stylesheet" href="{% static 'base/css4/bootstrap.min.css' %}" />
+            <link rel="stylesheet" href="{% static 'base/css4/animation.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/asColorPicker.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/fullcalendar.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/calendar.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/dataTables.bootstrap4.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/responsive.bootstrap4.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/fontawesome-all.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/jquery.gritter.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/jquery.minicolors.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/jquery.steps.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/magnific-popup.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/materialdesignicons.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/multicheck.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/perfect-scrollbar.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/quill.core.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/quill.snow.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/select2.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/steps.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/themify-icons.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/toastr.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/weather-icons.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/weather-icons.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/float-chart.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/style.min.css' %}"/>
+            <link rel="stylesheet" href="{% static 'base/css4/custom.css' %}"/>
+    <!-- HTML5 Shim and Respond.js' %} IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js' %} doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' %}"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js' %}/1.4.2/respond.min.js' %}"></script>
+<![endif]-->
+   {% block extra_style %}{% endblock extra_style %}
+</head>
+{% endblock head %}
+   
+   {% block body %}
+   
+       <body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css' %} -->
+    <!-- ============================================================== -->
+   <!-- <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>-->
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+         {% include 'dashboard/includes/header.html' %}
+         {% include 'dashboard/includes/sidebar.html' %}
+          <div class="page-wrapper">
+           {% block content %}{% endblock content %}
+           {% include 'dashboard/includes/footer.html' %}
+         </div>
+    </div>
+
+    {% block script %}
+    
+        <script  src="{% static 'base/js3/jquery.min.js' %}"></script>
+        <script  src="{% static 'base/js3/popper.min.js' %}"></script>
+        <script  src="{% static 'base/js3/bootstrap.min.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'base/js3/perfect-scrollbar.jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/js3/sparkline.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/js3/waves.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/js3/sidebarmenu.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/js3/custom.min.js' %}"></script>
+
+        <script  src="{% static 'base/js3/excanvas.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.pie.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.time.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.time.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.stack.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.crosshair.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.flot.tooltip.min.js' %}"></script>
+        <script  src="{% static 'base/js3/moment.min.js' %}"></script>
+        <script  src="{% static 'base/js3/chart-page-init.js' %}"></script>
+        <script  src="{% static 'base/js3/app-style-switcher.js' %}"></script>
+        <script  src="{% static 'base/js3/bootstrap-datepicker.min.js' %}"></script>
+        <script  src="{% static 'base/js3/datatable-checkbox-init.js' %}"></script>
+        <script  src="{% static 'base/js3/datatables.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.dataTables.min.js' %}"></script>
+        <script  src="{% static 'base/js3/dataTables.bootstrap4.min.js' %}"></script>
+        <script  src="{% static 'base/js3/dataTables.responsive.min.js' %}"></script>
+        <script  src="{% static 'base/js3/responsive.bootstrap4.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.charts-sparkline.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.magnific-popup.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery-asColor.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery-asGradient.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery-asColorPicker.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.minicolors.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.multicheck.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.validate.min.js' %}"></script>
+        <script  src="{% static 'base/js3/toastr.min.js' %}"></script>
+        <script  src="{% static 'base/js3/select2.full.min.js' %}"></script>
+        <script  src="{% static 'base/js3/select2.min.js' %}"></script>
+        <script  src="{% static 'base/js3/jquery.inputmask.bundle.min.js' %}"></script>
+        <script  src="{% static 'base/js3/quill.min.js' %}"></script>
+        <script  src="{% static 'base/js3/mask.init.js' %}"></script>
+        <script  src="{% static 'base/js3/meg.init.js' %}"></script>
+        <script  src="{% static 'base/js3/cal-init.js' %}"></script>
+        <script  src="{% static 'constant/strings.js' %}"></script>
+        <script  src="{% static 'constant/validator.js' %}"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#zero_config').DataTable();
+            });
+        </script>
+
+    {% block extra_script %}{% endblock extra_script %}
+
+    
+    {% endblock script %}
+
+    </body>
+   {% endblock body %}
+
+
+{% endblock html %}
