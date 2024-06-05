@@ -9,6 +9,15 @@ from django.shortcuts import render, redirect
 
 from storages.backends.s3boto3 import S3Boto3Storage
 from django.contrib.auth import authenticate, login
+
+from django.core.mail import send_mail
+from .models import OTP
+from django.utils import timezone
+from datetime import timedelta
+import json
+from django.http import JsonResponse
+
+
 # Create your views here.
 def home(request):
     return render(request,"landing_page/index.html")
@@ -97,7 +106,7 @@ def ModelCreation(request):
         else:
             return HttpResponse("No files selected for upload.")
     else:
-        return render(request, 'dashboard/ModelCreation.html')
+        return render(request, 'dashboard/ModelCreationLanding.html')
 
 
 def widgets(request):
@@ -170,4 +179,29 @@ def invoice(request):
 def chat(request):
     return render(request, "dashboard/chat.html")
 
+def Creation(request):
+    return render(request, "dashboard/ModelCreation.html")
 
+def send_otp(email):
+    otp_instance = OTP.objects.create(email=email)
+    otp_instance.generate_otp()
+    otp_instance.save()
+    
+    send_mail(
+        'ReaccelAi OTP Code',
+        f'ReaccelAi Your OTP code is {otp_instance.otp}',
+        'pinniboinarajesh640@gmail.com',
+        [email],
+        fail_silently=False,
+    )
+    print(f'otp code:{otp_instance.otp}')
+
+def send_otp_ajax(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        email = data.get('email')
+        if email:
+            send_otp(email)
+            print("otp sent")
+            #return JsonResponse({'success': True})
+    return JsonResponse({'success': False})

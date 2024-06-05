@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ReaccelAI',
-        'USER': 'ReaccelAI',
-        'PASSWORD': 'ReaccelAIpass',
-        'HOST': 'reacceldb-1.cdsceo6w29vs.ap-southeast-2.rds.amazonaws.com',
+        'NAME': 'reaccelproj',
+        'USER': 'rajesh',
+        'PASSWORD': 'rajesh@640',
+        'HOST': '34.82.249.159',
         'PORT': '3306',  # MySQL default port
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -144,3 +144,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pinniboinarajesh640@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+

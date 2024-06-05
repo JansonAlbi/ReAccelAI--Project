@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Model Creation
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Model Creation/Optimization</h4>
+                <div class="ml-auto text-right">
+                   <!-- <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Chart-1 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title>Neon Card</title-->
+    <!--link rel="stylesheet" href="test.css"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet", type = "text/css", href="{%static 'base/css4/ModelCreationLanding.css'%}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="neon-card">
+    <a href="{% url 'login:Creation' %}">
+	        <div class="text"><i class="fa-solid fa-power-off"></i> YOLO</div>
+        
+    </div>
+</a>
+
+<div class="neon-cardtwo">
+<a href="{% url 'login:Creation' %}">
+        <div class="text"><i class="fa-solid fa-power-off"></i> RNS</div>
+        
+    </div>
+</a>
+</body>
+</html>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

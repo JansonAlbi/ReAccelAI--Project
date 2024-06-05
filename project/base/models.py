@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 import uuid
+import random
+
 
 # Create your models here.
 class User_info(models.Model):
@@ -23,3 +25,13 @@ class Login_history(models.Model):
     def __str__(self):
         return self.email
     
+
+
+class OTP(models.Model):
+    email = models.EmailField()
+    otp = models.CharField(max_length=4)
+    timestamp = models.DateTimeField(default=timezone.now)
+    
+    def generate_otp(self):
+        self.otp = f"{random.randint(1000, 9999)}"
+        

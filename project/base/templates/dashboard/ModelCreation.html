@@ -6,24 +6,24 @@
     </style>
 {% endblock %}
 {% block page_title %}
- Chart
+ Model Creation
 {% endblock %}
 {% block content %}
-    <div class="page-breadcrumb">
+    <!--div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">Model Creation/Optimization</h4>
                 <div class="ml-auto text-right">
-                   <!-- <nav aria-label="breadcrumb">
+                   <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Library</li>
                         </ol>
-                    </nav>-->
+                    </nav>
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
@@ -39,57 +39,133 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        {% load static %}
+                        
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Machine Learning Web App</title>
-  <link href="{%static 'base/css4/opt_style.css'%}" rel="stylesheet" type="text/css" />
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier UI</title>
+    <!--link rel="stylesheet" href="teach.css"-->
+    <link rel="stylesheet", type = "text/css", href="{%static 'base/css4/ModelCreation.css'%}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+	.arrow-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    border: 3px solid #00f;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
 
-<body>
-{% csrf_token %}
-<form method="POST" enctype="multipart/form-data">
-{% csrf_token %}
-  <div class="upload-section">
-    <label for="class-input">Class 1:</label>
-    <input type="text" class="class-input">
-    <input type="file" class="file-upload"  id="file-upload" name="files[]">
-    <label for="class-input">Class 2:</label>
-    <input type="text" class="class-input">
-    <input type="file" class="file-upload"  name="files[]">
+.arrow {
+    color: #fff;
     
-  </div>
-  <div class="new-class">
-    <button id="new-class-button" class="add-new-section-button" onclick="addSection(event)">Add New Section</button>
-  </div>
-  <div class="train-section">
-    <button type="submit" id="train-button" >Train</button>
-    <div class="dropdown">
-      <button class="dropdown-button">Advanced Options</button>
-      <div class="dropdown-content">
-        <label for="epochs-input">Epochs:</label>
-        <input type="number" id="epochs-input" min="1" value="1">
-        <label for="learning-rate-input">Learning Rate:</label>
-        <input type="number" id="learning-rate-input" step="0.01" value="0.01">
-        <label for="batch-size-input">Batch Size:</label>
-        <input type="number" id="batch-size-input" min="1" value="1">
-      </div>
+}
+
+	</style>
+	
+	<script>
+	function backward()
+{
+	//document.getElementById("go-back").addEventListener("click", () => {
+  history.go(-1);
+//});
+}
+	</script>
+
+</head>
+<body>
+<button id="go-back" class="arrow-button" onclick="backward()">
+        <span class="arrow"><i class="fa fa-arrow-left fa-1x"></i></span>
+    </button>
+
+    <div class="container">
+        <div class="class-container" id="class-container">
+            <div class="class-box" data-class-id="1">
+                <div class="class-header">
+                    <input type="text" class="class-name" style="width: 80.888888px; height: 30px;" value="Class 1" readonly>
+                    <button class="edit-button">✏️</button>
+                    <div class="menu-container">
+                        <button class="menu-button">⋮</button>
+                        <div class="dropdown-menu">
+                            <button class="delete-class">Delete Class</button>
+                            <!--button class="disable-class">Disable Class</button-->
+                        </div>
+                    </div>
+                </div>
+		<hr>
+                <div class="class-body">
+                    <span>Add DataSet's:</span>
+                    <div class="button-group">
+                        <!--button class="webcam-button">Webcam</button-->
+                        <label class="upload-label">
+<svg class="sample-source-icon" width="24" height="24" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#ffff" fill-rule="evenodd" clip-rule="evenodd" d="M11 7.83L8.41 10.41L7 9L12 4L17 9L15.59 10.42L13 7.83V16H11V7.83ZM6 15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18V18H6V15Z"></path>
+                                </svg>
+                            Upload
+                            <input type="file" class="upload-input">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="class-box" data-class-id="2">
+                <div class="class-header">
+                    <input type="text" class="class-name" style="width: 80.888888px; height: 30px;" value="Class 2" readonly>
+                    <button class="edit-button">✏️</button>
+                    <div class="menu-container">
+                        <button class="menu-button">⋮</button>
+                        <div class="dropdown-menu">
+                            <button class="delete-class">Delete Class</button>
+                            <!--button class="disable-class">Disable Class</button-->
+                        </div>
+                    </div>
+                </div>
+		<hr>
+                <div class="class-body">
+                    <span>Add DataSet's:</span>
+                    <div class="button-group">
+                        <!--button class="webcam-button">Webcam</button-->
+                        <label class="upload-label">
+<svg class="sample-source-icon" width="24" height="24" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#ffff" fill-rule="evenodd" clip-rule="evenodd" d="M11 7.83L8.41 10.41L7 9L12 4L17 9L15.59 10.42L13 7.83V16H11V7.83ZM6 15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18V18H6V15Z"></path>
+                                </svg>
+                            Upload
+                            <input type="file" class="upload-input">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="add-class">
+                <button id="add-class-button">+ Add a class</button>
+            </div>
+        </div>
+        <div class="train-container">
+            <div class="train-box">
+                <span>Training</span>
+                <button class="train-button">Train Model</button>
+                <button class="advanced-button">Advanced</button>
+            </div>
+            <div class="preview-box">
+                <span>Preview</span>
+                <button class="export-button" disabled>Export Model</button>
+                <p>You must train a model on the left before you can preview it here.</p>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="inference-section">
-    <button id="inference-button">Run Inference</button>
-    <div id="camera-module"></div>
-  </div>
-</form>
-  <script src="{%static 'base/js3/opt_script.js' %}"></script>
+    <script type="text/javascript" src="{%static 'base/js3/ModelCreation.js' %}"></script>
 </body>
-
 </html>
+
+
                     </div>
                 </div>
             </div>

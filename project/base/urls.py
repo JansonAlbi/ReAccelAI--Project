@@ -1,5 +1,6 @@
 from django.urls import path, include
 from base.views import home,authView,optimiz#styleCSS
+from .views import send_otp_ajax
 from . import views
 
 urlpatterns = [
@@ -9,6 +10,7 @@ urlpatterns = [
     #path("style/", styleCSS, name="style"),
     path("index/", views.index, name="dashboard"),
     path("ModelCreation/", views.ModelCreation, name="ModelCreation"),
+    path("Creation/", views.Creation, name="Creation"),
     path("widgets/", views.widgets, name="widgets"),
     path("tables/", views.tables, name="tables"),
     path("grid/", views.grid, name="grid"),
@@ -21,5 +23,5 @@ urlpatterns = [
     path("gallery/", views.gallery, name="gallery"),
     path("invoice/", views.invoice, name="invoice"),
     path("chat/", views.chat, name="chat"),
-
+    path('login/send-otp/', views.send_otp_ajax, name='send_otp_ajax'),
 ]
