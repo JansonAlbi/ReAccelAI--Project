@@ -1,6 +1,7 @@
 var del=0;
 
-document.getElementById('add-class-button').addEventListener('click', () => {
+document.getElementById('add-class-button').addEventListener('click', (event) => {
+    event.preventDefault();
     const classContainer = document.getElementById('class-container');
     
     //const 
@@ -18,7 +19,7 @@ document.getElementById('add-class-button').addEventListener('click', () => {
 
     newClassBox.innerHTML = `
         <div class="class-header">
-            <input type="text" class="class-name" style="width: 80.888888px; height: 30px;" value="Class ${classNumber}" readonly>
+            <input type="text" name="class${classNumber}" id="class${classNumber}" class="class-name" style="width: 80.888888px; height: 30px;" value="Class ${classNumber}" readonly>
             <button class="edit-button">✏️</button>
             <div class="menu-container">
                 <button class="menu-button">⋮</button>
@@ -38,12 +39,13 @@ document.getElementById('add-class-button').addEventListener('click', () => {
                                     <path fill="#ffff" fill-rule="evenodd" clip-rule="evenodd" d="M11 7.83L8.41 10.41L7 9L12 4L17 9L15.59 10.42L13 7.83V16H11V7.83ZM6 15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18V18H6V15Z"></path>
                                 </svg>
                     Upload
-                    <input type="file" class="upload-input">
+                    <input type="file" name="file${classNumber}" class="upload-input" multiple>
                 </label>
             </div>
         </div>
     `;
-
+    document.getElementById('file-list').value=classNumber;
+    document.getElementById('class-list').value=classNumber;
     const addClassButton = document.querySelector('.add-class');
     classContainer.insertBefore(newClassBox, addClassButton);
 
@@ -51,13 +53,15 @@ document.getElementById('add-class-button').addEventListener('click', () => {
 });
 
 function addEventListeners(classBox) {
+    
     const editButton = classBox.querySelector('.edit-button');
     const classNameInput = classBox.querySelector('.class-name');
     const menuButton = classBox.querySelector('.menu-button');
     const deleteButton = classBox.querySelector('.delete-class');
     const uploadInput = classBox.querySelector('.upload-input');
 
-    editButton.addEventListener('click', () => {
+    editButton.addEventListener('click', (event) => {
+        event.preventDefault();
         classNameInput.removeAttribute('readonly');
         classNameInput.focus();
         classNameInput.addEventListener('blur', () => {
@@ -65,18 +69,21 @@ function addEventListeners(classBox) {
         }, { once: true });
     });
 
-    menuButton.addEventListener('click', () => {
+    menuButton.addEventListener('click', (event) => {
+        event.preventDefault();
         const menuContainer = classBox.querySelector('.menu-container');
         menuContainer.classList.toggle('open');
     });
 
-    deleteButton.addEventListener('click', () => {
+    deleteButton.addEventListener('click', (event) => {
+        event.preventDefault();
         classBox.remove();
 	del+=1;
 
     });
 
     uploadInput.addEventListener('change', (event) => {
+        event.preventDefault();
         const files = event.target.files;
         console.log(`Uploaded ${files.length} files for ${classNameInput.value}`);
     });
@@ -84,3 +91,34 @@ function addEventListeners(classBox) {
 
 // Initialize event listeners for existing class boxes
 document.querySelectorAll('.class-box').forEach(addEventListeners);
+
+
+//advance options
+
+document.addEventListener('DOMContentLoaded', function (event) {
+    event.preventDefault();
+    var coll = document.getElementsByClassName("collapsible");
+    event.preventDefault();
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+
+    document.getElementById('reset-defaults-btn').addEventListener('click', function (event) {
+        event.preventDefault();
+        document.getElementById('epochs').value = 50;
+        document.getElementById('batch-size').value = 16;
+        document.getElementById('learning-rate').value = 0.001;
+    });
+});
+

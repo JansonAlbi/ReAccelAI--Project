@@ -105,17 +105,74 @@ function sendotp(event) {
             body: JSON.stringify({ email: email })
         }).then(response => response.json()).then(data => {
             if (data.success) {
-                document.getElementById('otp-section').style.display = 'block';
+                document.getElementById('otp-section').style.visibility = 'visible';
+                //showOTPSection();
+                showModal("Successfully Sent Verification Code to Your Mail");
             }
+            else {
+              showModal("Failed to send OTP. Please try again.");
+          }
         });
     }
-        
-
-        
-    
+          
 }
 
 
+
+function verify_otp(event) {
+  //alert("fuck");
+  //event.preventDefault();
+    //verifying OTP
+    const email = document.getElementById('email').value;
+    const otp_1 = document.getElementById('otp_1').value;
+    const otp_2 = document.getElementById('otp_2').value;
+    const otp_3 = document.getElementById('otp_3').value;
+    const otp_4 = document.getElementById('otp_4').value;
+    if (email && otp_1 && otp_2 && otp_3 && otp_4) {
+        fetch('verify-otp/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({ email: email,otp_1: otp_1,otp_2: otp_2,otp_3: otp_3,otp_4: otp_4})
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                showModal("Mail verification successful");
+                document.getElementById('signup-submit').disabled = false;
+            }
+            else {
+              showModal("Mail verification Failed");
+          }
+        });
+    }
+    else
+    {
+      showModal("inputs are incomplete");
+    }
+          
+}
+
+
+
+function showModal(message) {
+  var modal = document.getElementById("myModal");
+  var modalMessage = document.getElementById("modalMessage");
+  modalMessage.textContent = message;
+  modal.style.display = "block";
+}
+
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  var modal = document.getElementById("myModal");
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
 
   /*let inputsAdded = false;
   function myFunction()
@@ -190,3 +247,8 @@ function confirmPasswordVisibility() {
   }
 }
 
+function forgot_password(event)
+{
+  event.preventDefault();
+  showModal("Forgot Password");
+}

@@ -84,6 +84,11 @@
 
 </head>
 <body>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<input type="hidden" id="form_type" name="form_type" value="uploading">
+<input type="hidden" id="file-list" name="file_list" value="2">
+<input type="hidden" id="class-list" name="class_list" value="2">
 <button id="go-back" class="arrow-button" onclick="backward()">
         <span class="arrow"><i class="fa fa-arrow-left fa-1x"></i></span>
     </button>
@@ -92,7 +97,7 @@
         <div class="class-container" id="class-container">
             <div class="class-box" data-class-id="1">
                 <div class="class-header">
-                    <input type="text" class="class-name" style="width: 80.888888px; height: 30px;" value="Class 1" readonly>
+                    <input type="text" id="class1" class="class-name" name="class1" style="width: 80.888888px; height: 30px;" value="Class 1" readonly>
                     <button class="edit-button">✏️</button>
                     <div class="menu-container">
                         <button class="menu-button">⋮</button>
@@ -112,14 +117,14 @@
                                     <path fill="#ffff" fill-rule="evenodd" clip-rule="evenodd" d="M11 7.83L8.41 10.41L7 9L12 4L17 9L15.59 10.42L13 7.83V16H11V7.83ZM6 15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18V18H6V15Z"></path>
                                 </svg>
                             Upload
-                            <input type="file" class="upload-input">
+                            <input type="file" name="file1" class="upload-input" multiple>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="class-box" data-class-id="2">
                 <div class="class-header">
-                    <input type="text" class="class-name" style="width: 80.888888px; height: 30px;" value="Class 2" readonly>
+                    <input type="text" id="class2" class="class-name" name="class2" style="width: 80.888888px; height: 30px;" value="Class 2" readonly>
                     <button class="edit-button">✏️</button>
                     <div class="menu-container">
                         <button class="menu-button">⋮</button>
@@ -139,7 +144,7 @@
                                     <path fill="#ffff" fill-rule="evenodd" clip-rule="evenodd" d="M11 7.83L8.41 10.41L7 9L12 4L17 9L15.59 10.42L13 7.83V16H11V7.83ZM6 15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18V18H6V15Z"></path>
                                 </svg>
                             Upload
-                            <input type="file" class="upload-input">
+                            <input type="file" name="file2" class="upload-input" multiple>
                         </label>
                     </div>
                 </div>
@@ -150,17 +155,43 @@
         </div>
         <div class="train-container">
             <div class="train-box">
-                <span>Training</span>
-                <button class="train-button">Train Model</button>
-                <button class="advanced-button">Advanced</button>
+                <span style="font-size:20px;">Training</span>
+                     <div class="training-panel">
+        <!--div class="training-header">
+            <button id="train-model-btn" disabled>Train Model</button>
+        </div-->
+        <div class="advanced-options">
+            <button class="collapsible">Advanced</button>
+            <div class="content">
+                <div class="option">
+                    <label for="epochs">Epochs:</label>
+                    <input type="number" name="epoch" id="epochs" value="50">
+                </div>
+                <div class="option">
+                    <label for="batch-size">Batch Size:</label>
+                    <input type="number" name="batchsize" id="batch-size" value="16">
+                </div>
+                <div class="option">
+                    <label for="learning-rate">Learning Rate:</label>
+                    <input type="number" name="learningrate" id="learning-rate" step="0.001" value="0.001">
+                </div>
             </div>
-            <div class="preview-box">
+        </div>
+        <button id="reset-defaults-btn">Reset Defaults</button>
+    </div>
+
+                <!--button class="advanced-button">Advanced</button-->
+                <button type="submit" class="train-button">Train Model</button>
+                <!--button class="advanced-button">Advanced</button-->
+            </div>
+            <!--div class="preview-box">
                 <span>Preview</span>
                 <button class="export-button" disabled>Export Model</button>
                 <p>You must train a model on the left before you can preview it here.</p>
-            </div>
+            </div-->
         </div>
     </div>
+    </form>
     <script type="text/javascript" src="{%static 'base/js3/ModelCreation.js' %}"></script>
 </body>
 </html>

@@ -87,21 +87,22 @@
                     <div class="phone-input" id="otpinput">
                      <select class="countrycode" id="country-code" data-items-scroll="5">
                     </select>
-                      <input type="tel" name = "signup_phone_number" id="phone-number" placeholder="Phone Number">
-                      <button class="send-otp" id="sendOTP" onclick="sendotp(event)">Send OTP</button>
+                      <input type="tel" name = "signup_phone_number" id="phone-number" placeholder="Phone Number" required>
+                      <button class="send-otp" id="sendOTP" onclick="sendotp(event)">Verify Email</button>
                     </div>
                     
                     
-                    <div id="otp-section" hidden>
-                      <input type="text" class="otp-digit" maxlength="1">
-                      <input type="text" class="otp-digit" maxlength="1">
-                      <input type="text" class="otp-digit" maxlength="1">
-                      <input type="text" class="otp-digit" maxlength="1">
-                      <button class="verify-otp" id="verifyotp">Verify</button>
+                    <div class="verification-otp" id="otp-section" hidden>
+                      <input type="text" id="otp_1" class="otp-digit" maxlength="1">
+                      <input type="text" id="otp_2" class="otp-digit" maxlength="1">
+                      <input type="text" id="otp_3" class="otp-digit" maxlength="1">
+                      <input type="text" id="otp_4" class="otp-digit" maxlength="1">
+                      <button type="button" class="verify-otp" id="verifyotp" onclick="verify_otp(event)">Verify</button>
                     </div>
                   </div>
-
-                <button class="Sign_Up">Sign Up</button>
+                <div class="submition">
+                <button disabled type="submit" id="signup-submit"class="Sign_Up">Sign Up</button>
+                </div>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -127,11 +128,12 @@
                 </span>
 
                 </div>
-                <a href="#">Forgot Your Password?</a>
+                <!--a href="#">Forgot Your Password?</a-->
+                <button type="button" id="forgotpassword" class="forgotpassword" style="border: none; cursor: pointer;color: blue;background-color: none;" onclick="forgot_password(event)">Forgot Your Password?</button>
                 <button class="Sign_In">Sign In</button>
                 <div class="sign-in-option">
-                    <input type="checkbox" id="keep-me-signed-in">
-                    <label for="keep-me-signed-in">Keep me signed in</label>
+                    <!--input type="checkbox" id="keep-me-signed-in">
+                    <label for="keep-me-signed-in">Keep me signed in</label-->
                   </div>
             </form>
         </div>
@@ -152,6 +154,14 @@
         </div>
     </div>
 </div>
+
+<div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+            <button id="okay" onclick="closeModal()">Okay</button>
+        </div>
+    </div>
     <script type="text/javascript" src="{%static 'base/js1/script.js' %}"></script>
     <!-- Font Awesome JS 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-6EuOsX7eVcmlc/Z77ZonUOqcF5sBRivNBDP5q4OGHn3DL/pSNlUQNOsBdET+oE/M" crossorigin="anonymous"></script>

@@ -98,3 +98,15 @@ body {
 a {
 	text-decoration: none;
 }
+
+.projectname {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 100%;
+    align-items: center;
+    outline: none;
+}

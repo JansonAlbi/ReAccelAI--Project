@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Your Profile</h4>
+                <div class="ml-auto text-right">
+                    <!--<nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>-->
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- editor -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+        <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title>Student Profile</title-->
+    <link rel="stylesheet" href="{% static 'base/css4/profile.css' %}">
+    <style>
+	.arrow-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    border: 3px solid #00f;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.arrow {
+    color: #fff;
+    
+}
+
+	</style>
+	
+	<script>
+	function backward()
+{
+	//document.getElementById("go-back").addEventListener("click", () => {
+  history.go(-1);
+//});
+}
+	</script>
+
+</head>
+<body>
+<button id="go-back" class="arrow-button" onclick="backward()">
+        <span class="arrow"><i class="fa fa-arrow-left fa-1x"></i></span>
+    </button>
+    <div class="profile-container">
+        <h1>Your Profile</h1>
+        <!--p>Let's get to know you a little better.</p-->
+        <div class="profile-photo">
+            <img src="{% static 'base/images/users/1.jpg' %}" alt="Profile Photo">
+            <!--div class="photo-upload">
+                <button>+</button>
+            </div-->
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="first_name">Your Name</label>
+                <input type="text" id="first_name" name="first_name" value="{{ user.name }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Your Account Created On</label>
+                <input type="text" id="last_name" name="last_name" value="{{ user.created_at }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email Address</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <div class="phone-input">
+                    <span class="country-code">+91</span>
+                    <input type="text" id="phone_number" name="phone_number" value="{{ user.phone_number }}" readonly>
+                </div>
+            </div>
+            <!--div class="form-group">
+                <label for="dob">Date Of Birth*</label>
+                <input type="date" id="dob" name="dob" value="2003-04-01" readonly>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <div class="gender-input">
+                    <input type="radio" id="male" name="gender" value="male" {% if user.profile.gender == 'male' %}checked{% endif %}>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female" {% if user.profile.gender == 'female' %}checked{% endif %}>
+                    <label for="female">Female</label>
+                </div!>
+            </div-->
+        </form>
+    </div>
+</body>
+</html>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+          
+{% endblock %}

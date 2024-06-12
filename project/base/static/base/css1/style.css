@@ -56,7 +56,7 @@
     margin: 15px 0 10px;
 }
 
-.Sign_Up,.Sign_In{
+.Sign_Up{
     background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
@@ -69,6 +69,21 @@
     margin-top: 10px;
     cursor: pointer;
 }
+
+.Sign_In{
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
 #login,#register{
     background-color: orange;
     color: #fff;
@@ -309,7 +324,7 @@
     background-color: rgb(0, 0, 0);
     color: #fff;
     font-size: 12px;
-    padding: 5px 25px;
+    padding: 5px 16.5px;
     border: 1px solid transparent;
     border-radius: 8px;
     font-weight: 600;
@@ -362,7 +377,7 @@ font-size:15px;
 
 .signin_toggle-password{
     position: absolute;
-    top: 56.5%;
+    top: 58.5%;
     left: 310px;
     transform: translateY(-50%);
     cursor: pointer;
@@ -375,3 +390,71 @@ font-size:15px;
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+ /* Modal styling */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Make sure it is on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 80px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Max width */
+    text-align: center; /* Center the text */
+    border-radius: 15px;
+   
+}
+
+/* Close Button */
+.close {
+    position: relative;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    left: 50px;
+    top: -60px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#okay{
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 15px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    top: 40px;
+    cursor: pointer;
+}
+
+#okay:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+
+/*forgot password*/

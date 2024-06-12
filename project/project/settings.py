@@ -9,20 +9,25 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-# Add these import statements at the top
-import os
-import boto3
-from storages.backends.s3boto3 import S3Boto3Storage
-from base.storage_backends.storage import StaticStorage,MediaStorage
-AWS_ACCESS_KEY_ID = 'AKIAW3MD65MIJ37CPITO'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'datasets-storage-reaccelai'
-AWS_S3_REGION_NAME = 'ap-southeast-2'
-AWS_DEFAULT_ACL = 'public-read'  # Optionally set permissions
 
-# Static and media file storage settings for AWS S3
-DEFAULT_FILE_STORAGE = 'base.storage_backends.storage.MediaStorage'
-"""STATICFILES_STORAGE = 'base.storage_backends.storage.StaticStorage'"""
+import os
+from google.oauth2 import service_account
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Add your Google Cloud Storage bucket name
+GS_BUCKET_NAME = 'reaccelai'
+
+# Path to your service account key file
+GOOGLE_APPLICATION_CREDENTIALS = os.path.join(BASE_DIR, 'C:\\Users\\Rajesh\\Desktop\\heroic-calculus-422700-v3-2cbd092c06ec.json')
+
+# Create credentials object for Google Cloud Storage
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(GOOGLE_APPLICATION_CREDENTIALS)
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_PROJECT_ID = 'heroic-calculus-422700-v3'
+
+# Add these import statements at the top
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -150,5 +156,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'pinniboinarajesh640@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'pvzjnufraprcfmpc'
 

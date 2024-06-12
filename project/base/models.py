@@ -34,4 +34,23 @@ class OTP(models.Model):
     
     def generate_otp(self):
         self.otp = f"{random.randint(1000, 9999)}"
-        
+
+
+
+class UploadedFile(models.Model):
+    reaccel_id = models.CharField(max_length=100)
+    project_name = models.CharField(max_length=100)
+    class_names = models.CharField(max_length=100)
+    file = models.FileField(upload_to='uploads/')
+    timestamp = models.DateTimeField(default=timezone.now)
+    epoch_value= models.IntegerField()
+    batch_size= models.IntegerField()
+    learning_rate= models.FloatField()
+    project_status=models.IntegerField()
+    model_type=models.IntegerField()
+
+class login_at(models.Model):
+    email=models.EmailField()
+    user_name=models.CharField(max_length=100)
+    reaccel_id=models.CharField(max_length=100)
+    login_at=models.DateTimeField(default=timezone.now)

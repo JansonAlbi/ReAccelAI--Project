@@ -25,7 +25,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">History</h4>
+                <h4 class="page-title">Project History</h4>
                 <div class="ml-auto text-right">
                     <!--<nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -61,18 +61,31 @@
     </style>
 </head>
 <body>
-    <h1>Your Account Login History</h1>
+    <h1>Your Project History</h1>
     <table>
         <tr>
-            <th>Email</th>
-            <th>User Name</th>
-            <th>Login At</th>
+            <th>Project Name</th>
+            <th>Class Name</th>
+            <th>File Path</th>
+            <th>created On</th>
+            <th>Epoch Value</th>
+            <th>Batch Size</th>
+            <th>Learning Rate</th>
+            <th>Project Status</th>
+            <th>Model Type</th>
         </tr>
         {% for item in data %}
         <tr>
-            <td>{{ item.email }}</td>
-            <td>{{ item.user_name }}</td>
-            <td>{{ item.login_at}}</td>
+            <td>{{ item.project_name }}</td>
+            <td>{{ item.class_names }}</td>
+            <td>{{ item.file}}</td>
+            <td>{{ item.timestamp}}</td>
+            <td>{{ item.epoch_value}}</td>
+            <td>{{ item.batch_size}}</td>
+            <td>{{ item.learning_rate}}</td>
+            <td>{{ item.project_status}}</td>
+            <td>{{ item.model_type}}</td>
+            
         </tr>
         {% endfor %}
     </table>

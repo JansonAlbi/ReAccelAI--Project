@@ -54,20 +54,74 @@
 </head>
 
 <body>
-
+    <div class="project">
+            <label style="font-size:20px">Enter Project Name</label>
+            <input type="text" class="projectname" id="project-name" placeholder="enter meaningful name" required></input>
+    </div>
     <div class="neon-card">
     <a href="{% url 'login:Creation' %}">
-	        <div class="text"><i class="fa-solid fa-power-off"></i> YOLO</div>
+	        <div class="text" onclick="submitForm('YOLO')"><i class="fa-solid fa-power-off"></i> YOLO</div>
         
     </div>
 </a>
 
 <div class="neon-cardtwo">
 <a href="{% url 'login:Creation' %}">
-        <div class="text"><i class="fa-solid fa-power-off"></i> RNS</div>
+        <div class="text" onclick="submitForm('CNN')"><i class="fa-solid fa-power-off"></i> CNN</div>
         
     </div>
 </a>
+<form id="hidden-form" method="POST" style="display:none;">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="modellanding">
+        <input type="hidden" name="project_name" id="hidden-project-name">
+        <input type="hidden" name="model_type" id="hidden-model-type">
+    </form>
+
+    <script>
+        function submitForm(modelType) {
+            const projectName = document.getElementById('project-name').value;
+            /*if (!projectName) {
+                alert("Please enter a project name");
+                return;
+            }*/
+
+            const hiddenForm = document.getElementById('hidden-form');
+            const hiddenProjectName = document.getElementById('hidden-project-name');
+            const hiddenModelType = document.getElementById('hidden-model-type');
+
+            hiddenProjectName.value = projectName;
+            hiddenModelType.value = (modelType === 'YOLO') ? 1 : 2;
+
+            const formData = new FormData(hiddenForm);
+
+            fetch("{% url 'login:Creation' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(data => {
+                console.log('Form successfully submitted');
+                console.log(data); // You can remove this line in production
+                // Optionally, redirect to another page or show a success message
+            })
+            .catch(error => {
+                console.error('There was a problem with the form submission:', error);
+            });
+        
+
+        }
+        
+    </script>
 </body>
 </html>
 
