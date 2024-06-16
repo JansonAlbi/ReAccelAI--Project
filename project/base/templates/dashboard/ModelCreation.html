@@ -74,8 +74,9 @@
 	</style>
 	
 	<script>
-	function backward()
+	function backward(event)
 {
+    event.preventDefault();
 	//document.getElementById("go-back").addEventListener("click", () => {
   history.go(-1);
 //});
@@ -89,7 +90,7 @@
 <input type="hidden" id="form_type" name="form_type" value="uploading">
 <input type="hidden" id="file-list" name="file_list" value="2">
 <input type="hidden" id="class-list" name="class_list" value="2">
-<button id="go-back" class="arrow-button" onclick="backward()">
+<button id="go-back" class="arrow-button" onclick="backward(event)">
         <span class="arrow"><i class="fa fa-arrow-left fa-1x"></i></span>
     </button>
 

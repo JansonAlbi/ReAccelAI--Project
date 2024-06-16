@@ -16,6 +16,10 @@
         th {
             background-color: #f2f2f2;
         }
+        .aboutus-page-title{
+            margin-top: -10px;
+        }
+
     </style>
 {% endblock %}
 {% block page_title %}
@@ -25,7 +29,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Your Profile</h4>
+                <h4 class="aboutus-page-title">About ReaccelAi</h4>
                 <div class="ml-auto text-right">
                     <!--<nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -48,7 +52,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--title>Student Profile</title-->
-    <link rel="stylesheet" href="{% static 'base/css4/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css4/about.css' %}">
     <style>
 	.arrow-button {
     position: absolute;
@@ -83,36 +87,36 @@
 
 </head>
 <body>
-<button id="go-back" class="arrow-button" onclick="backward()">
+<!--button id="go-back" class="arrow-button" onclick="backward()">
         <span class="arrow"><i class="fa fa-arrow-left fa-1x"></i></span>
-    </button>
+    </button-->
     <div class="profile-container">
-        <h1>Your Profile</h1>
+        <h1>About Us</h1>
         <!--p>Let's get to know you a little better.</p-->
-        <div class="profile-photo">
+        <!--div class="profile-photo">
             <img src="{% static 'base/images/users/1.jpg' %}" alt="Profile Photo">
-            <!--div class="photo-upload">
+            <div class="photo-upload">
                 <button>+</button>
-            </div-->
-        </div>
+            </div>
+        </div-->
         <form>
             <div class="form-group">
-                <label for="first_name">Your Name</label>
-                <input type="text" id="first_name" name="first_name" value="{{ profileuser.name }}" readonly>
+                <label for="first_name">Version</label>
+                <input type="text" id="first_name" name="first_name" value="V1.0.1" readonly>
             </div>
             <div class="form-group">
-                <label for="last_name">Your Account Created On</label>
-                <input type="text" id="last_name" name="last_name" value="{{ profileuser.created_at }}" readonly>
+                <label for="last_name">Storage</label>
+                <input type="text" id="last_name" name="last_name" value="Google Storage Bucket" readonly>
             </div>
             <div class="form-group">
-                <label for="email">Your Email Address</label>
-                <input type="email" id="email" name="email" value="{{ profileuser.email }}" readonly>
+                <label for="email">Database Version</label>
+                <input type="email" id="email" name="email" value="MySQL 8.0" readonly>
             </div>
             <div class="form-group">
-                <label for="phone_number">Phone Number</label>
+                <label for="phone_number">AI Service</label>
                 <div class="phone-input">
-                    <span class="country-code">+91</span>
-                    <input type="text" id="phone_number" name="phone_number" value="{{ profileuser.phone_number }}" readonly>
+                    <!--span class="country-code">+91</span-->
+                    <input type="text" id="phone_number" name="phone_number" value="Google VertexAi" readonly>
                 </div>
             </div>
             <!--div class="form-group">
@@ -130,6 +134,10 @@
             </div-->
         </form>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 </body>
 </html>
 

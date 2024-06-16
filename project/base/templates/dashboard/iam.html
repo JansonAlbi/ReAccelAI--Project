@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .projecthistory-page-title{
+            margin-top: -10px;
+        }
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="projecthistory-page-title">IAM User's</h4>
+                <div class="ml-auto text-right">
+                    <!--<nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>-->
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- editor -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+        <html>
+<head>
+    <title>Display Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .iam-user {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 950px;
+    margin-right: 0px;
+    margin-bottom:10px;
+}
+
+.fas{
+    position:relative;
+    margin-left:-30px;
+    z-index: 1000;
+    left: 50px;
+}
+.remove-iam-user {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 950px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+/* Modal styling */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Make sure it is on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 80px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Max width */
+    text-align: center; /* Center the text */
+    border-radius: 15px;
+   
+}
+
+/* Close Button */
+.close {
+    position: relative;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    left: 50px;
+    top: -60px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#okay{
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 15px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    top: 40px;
+    cursor: pointer;
+}
+
+#okay:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+    </style>
+    <script>
+    function careatingiam(counter) {
+    var passwordInput = document.getElementById("iam_password" + counter);
+    var hideEyeIcon = document.getElementById("signin_hide-eye" + counter);
+    var revealEyeIcon = document.getElementById("signin_reveal-eye" + counter);
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        hideEyeIcon.style.display = "none";
+        revealEyeIcon.style.display = "inline";
+    } else {
+        passwordInput.type = "password";
+        hideEyeIcon.style.display = "inline";
+        revealEyeIcon.style.display = "none";
+    }
+}
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+function removeuser(counter) {
+            alert("remove user");
+            alert(counter);
+            const iam_user_checkbox = document.getElementById('iam-usercheckbox' + counter).value;
+            alert(iam_user_checkbox);
+            alert("hey");
+
+            if (iam_user_checkbox) {
+                fetch('remove_iamuser_ajax/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({ iam_user_checkbox: iam_user_checkbox })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showModal("Successfully Removed User");
+                    } else {
+                        showModal("Failed To Remove User");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showModal("Failed To Remove User");
+                });
+            }
+        }
+
+</script>
+</head>
+<body>
+    <h1> Identity and Access Management</h1>
+    <div class="submition">
+        <a href="{% url 'login:creating_iam_user' %}">
+                <button type="button" id="iam-user" class="iam-user">+ New User</button>
+                </div>
+        </a>
+    <table>
+        <tr>
+            <th>IAM User Name</th>
+            <th>password</th>
+            <th>Access permissions</th>
+            <th>User created On</th>
+            <th>Description</th>
+
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td><input type="checkbox" 
+                   name="usercheck" 
+                   id="iam-usercheckbox{{ forloop.counter }}" 
+                   value="{{ item.iam_user_name }}"><label class="checkbox">&nbsp;&nbsp;{{ item.iam_user_name }}</label></input></td>
+            <!--<td>{{ item.iam_user_password }}</td>-->
+            <td><input type="password" id="iam_password{{ forloop.counter }}" style="border-style:none;" value="{{ item.iam_user_password }}" readonly><!--eye icon-->
+                <span class="signin_toggle-password" onclick="careatingiam({{ forloop.counter }})">
+                    <i id="signin_hide-eye{{ forloop.counter }}" class="fas fa-eye-slash"></i>
+                    <i id="signin_reveal-eye{{ forloop.counter }}" class="fas fa-eye" style="display: none;"></i>
+                </span>
+                </input></td>
+            <td>{{ item.access_permissions}}</td>
+            <td>{{ item.user_createdon}}</td>
+            <td>{{ item.description}}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="button" id="remove-iam-user" class="remove-iam-user" onclick="removeuser({{ forloop.counter }})">Remove User</button>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+            <button id="okay" onclick="closeModal()">Okay</button>
+        </div>
+    </div>
+</body>
+</html>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+           <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+
+            /*colorpicker*/
+            $('.demo').each(function () {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+
+                    change: function (value, opacity) {
+                        if (!value) return;
+                        if (opacity) value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+        </script>
+{% endblock %}

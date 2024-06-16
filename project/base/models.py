@@ -13,6 +13,7 @@ class User_info(models.Model):
     password = models.CharField(max_length=255)
     phone_number = models.BigIntegerField()
     created_at = models.DateTimeField(default=timezone.now)
+    allpermissions=models.IntegerField()
     def __str__(self):
         return self.email
     
@@ -54,3 +55,20 @@ class login_at(models.Model):
     user_name=models.CharField(max_length=100)
     reaccel_id=models.CharField(max_length=100)
     login_at=models.DateTimeField(default=timezone.now)
+
+class admin_iam_users(models.Model):
+    reaccel_id=models.CharField(max_length=100)
+    iam_user_name=models.CharField(primary_key=True,max_length=100)
+    iam_user_password=models.CharField(max_length=255)
+    access_permissions=models.CharField(max_length=255)
+    user_createdon=models.DateTimeField(default=timezone.now)
+    description=models.CharField(max_length=500)
+    dashboard=models.IntegerField()
+    model_creation=models.IntegerField()
+    performance=models.IntegerField()
+    acceleration=models.IntegerField()
+    test_model=models.IntegerField()
+    track_yourself=models.IntegerField()
+    others=models.IntegerField()
+    def __str__(self):
+        return self.iam_user_name

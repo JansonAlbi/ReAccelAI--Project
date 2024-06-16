@@ -1,0 +1,261 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.profile-container {
+    /*background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;*/
+    position: relative;
+    text-align: center;
+    margin-left: 200px;
+}
+
+.profile-container h1 {
+    margin-bottom: 10px;
+    margin-right: 250px;
+}
+
+.profile-container p {
+    margin-bottom: 20px;
+    color: gray;
+}
+
+.profile-photo {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.profile-photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photo-upload {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group input[type="password"] {
+    width: calc(70% - 10px);
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.form-group input[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.phone-input {
+    display: flex;
+}
+
+.country-code {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.phone-input input {
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+}
+
+.gender-input {
+    display: flex;
+    align-items: center;
+}
+
+.gender-input label {
+    margin-right: 10px;
+}
+
+.gender-input input[type="radio"] {
+    margin-right: 5px;
+}
+
+.phone-input  input[type="tel"] {
+    width: calc(65% - 10px);
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.update-changes {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-right: 30px;
+}
+
+/* Modal styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Make sure it is on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 80px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Max width */
+    text-align: center; /* Center the text */
+    border-radius: 15px;
+   
+}
+
+/* Close Button */
+.close {
+    position: relative;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    left: 220px;
+    top: -60px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#okay{
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 15px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    top: 40px;
+    cursor: pointer;
+}
+
+#okay:hover{
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+
+.change-password {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: -100px;
+    cursor: pointer;
+}
+
+.verify-otp {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
+.update_new_password{
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+
+.profilesettings-page-title{
+    margin-top: -10px;
+}

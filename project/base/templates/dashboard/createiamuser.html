@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Model Creation
+{% endblock %}
+{% block content %}
+    <!--div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Model Creation/Optimization</h4>
+                <div class="ml-auto text-right">
+                   <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div-->
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Chart-1 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title>Image Classifier UI</title-->
+    <!--link rel="stylesheet" href="teach.css"-->
+    <link rel="stylesheet", type = "text/css", href="{%static 'base/css4/ModelCreation.css'%}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+	.arrow-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    border: 3px solid #00f;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.arrow {
+    color: #fff;
+    
+}
+.form-group input[type="text"], .form-group input[type="email"], .form-group input[type="date"], .form-group input[type="password"] {
+    width: calc(70% - 10px);
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.arrow-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    border: 3px solid #00f;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.arrow {
+    color: #fff;
+    align-items: center;
+}
+
+input[type="text"],input[type="password"]{
+    position: relative;
+    /*text-align: center;*/
+    margin-left: 200px;
+}
+label{
+     position: relative;
+    margin-left: 200px;
+}
+.checkbox{
+     position: relative;
+    margin-left: 50px;
+    margin-top: -20px;
+}
+.iam-user {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 800px;
+    margin-right: 0px;
+    margin-bottom:10p
+}
+
+ fieldset {
+            width: 350px;
+            margin-left: 200px;
+        }
+
+.fas{
+    position:relative;
+    margin-left:-40px;
+    z-index: 1000;
+}
+
+	</style>
+	
+	<script>
+	function backward(event)
+{
+    event.preventDefault();
+	//document.getElementById("go-back").addEventListener("click", () => {
+  history.go(-1);
+//});
+}
+
+/*eye icon for creating iam usrer password field*/
+function careatingiam() {
+  var passwordInput = document.getElementById("iam_password");
+  var hideEyeIcon = document.getElementById("signin_hide-eye");
+  var revealEyeIcon = document.getElementById("signin_reveal-eye");
+
+  if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      hideEyeIcon.style.display = "none";
+      revealEyeIcon.style.display = "inline";
+  } else {
+      passwordInput.type = "password";
+      hideEyeIcon.style.display = "inline";
+      revealEyeIcon.style.display = "none";
+  }
+}
+	</script>
+
+</head>
+<body>
+<button id="go-back" class="arrow-button" onclick="backward(event)">
+        <span class="arrow"><i class="fa fa-arrow-left fa-1x"></i></span>
+    </button>
+<h1 align="center" style="margin-top:20px; margin-left:20px;">Creating IAM User</h1>
+<form method="POST">
+{% csrf_token %}
+<div id="createiam">
+<input type="hidden" id="form_type" name="form_type" value="creatingiamuser">
+    <div class="form-group" id="entering-otp">
+                <label for="otp_label" id="otplabel">IAM User Name</label>
+                <input type="text" id="iam_username" name="iam_username" placeholder="Enter User Name">
+            </div>
+            <div class="form-group" id="entering-otp">
+                <label for="otp_label" id="otplabel">Password</label>
+                <input type="password" id="iam_password" name="iam_password" placeholder="Enter Password">
+                <!--eye icon-->
+                <span class="signin_toggle-password" onclick="careatingiam()">
+                    <i id="signin_hide-eye" class="fas fa-eye-slash"></i>
+                    <i id="signin_reveal-eye" class="fas fa-eye" style="display: none;"></i>
+                </span>
+                </input>
+            </div>
+            <div class="form-group" id="entering-otp">
+                <label for="otp_label" id="otplabel">Description</label>
+                <input type="text" id="iam_description" name="iam_description" placeholder="Enter Description">
+            </div>
+    </div>
+    <fieldset>
+            <legend>Select Access Permissions:</legend>
+
+            <input type="checkbox" 
+                   name="Dashboard" 
+                   id="checkbox1" 
+                   value="Dashboard">
+            <label class="checkbox">Dashboard</label>
+            <br>
+
+            <input type="checkbox" 
+                   name="modelcreation" 
+                   id="checkbox2" 
+                   value="Model Creation">
+            <label class="checkbox">Model Creation</label>
+            <br>
+
+            <input type="checkbox" 
+                   name="performance" 
+                   id="checkbox3" 
+                   value="Performance">
+            <label class="checkbox">Performance</label>
+            <br>
+
+            <!--<input type="checkbox" 
+                   name="acceleration" 
+                   id="checkbox3" 
+                   value="Acceleration">
+            <label class="checkbox">Acceleration</label>
+            <br>-->
+
+            <input type="checkbox" 
+                   name="testmodel" 
+                   id="checkbox3" 
+                   value="Test Model">
+            <label class="checkbox">Test Model</label>
+            <br>
+
+            <input type="checkbox" 
+                   name="trackyourself" 
+                   id="checkbox3" 
+                   value="Track Your Self">
+            <label class="checkbox">Track Your Self</label>
+
+        </fieldset>
+    <div class="submition">
+                <button type="submit" id="iam-user" class="iam-user">Create</button>
+                </div>
+    </form>
+    <!--<script type="text/javascript" src="{%static 'base/js3/ModelCreation.js' %}"></script-->
+</body>
+</html>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
