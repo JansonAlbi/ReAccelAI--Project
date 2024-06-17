@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .history-page-title{
+            margin-top: -10px;
+        }
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="history-page-title">Testing Model</h4>
+                <div class="ml-auto text-right">
+                    <!--<nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>-->
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- editor -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+        <html>
+<head>
+    <title>Display Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .video-inference {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 300px;
+    margin-right: 30px;
+    position: relative;
+    top: 30px;
+}
+
+.live-inference {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: -20px;
+    cursor: pointer;
+    margin-left: 600px;
+    margin-right: 30px;
+}
+
+.button-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn {
+            background-color: black;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        #camera {
+            display: none;
+            width: 640px;
+            height: 480px;
+            margin: 20px auto;
+        }
+    </style>
+    <script>
+    document.getElementById('live-inference').addEventListener('click', function() {
+    const video = document.getElementById('camera');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+
+    // Start the camera
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            video.srcObject = stream;
+            video.style.display = 'block';
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Start capturing frames
+            captureFrames(video, context, canvas);
+        }).catch(function(error) {
+            console.error("Error accessing the camera: ", error);
+        });
+    } else {
+        console.error("getUserMedia not supported by this browser.");
+    }
+});
+
+function captureFrames(video, context, canvas) {
+    function captureFrame() {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataURL = canvas.toDataURL('image/jpeg');
+        sendFrameToServer(dataURL);
+        // Capture the next frame after a short delay
+        setTimeout(captureFrame, 100); // Adjust the delay as needed (100 ms = 10 frames per second)
+    }
+    captureFrame();
+}
+
+async function sendFrameToServer(dataURL) {
+    const response = await fetch('process_image/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')  // Add this line if you're using Django
+        },
+        body: JSON.stringify({ image: dataURL })
+    });
+
+    const result = await response.json();
+    console.log(result);
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+</script>
+</head>
+<body>
+    <h1 align="center">Test the Model</h1>
+    <!--<div class="submition">
+                <button type="submit" id="video-inference" class="video-inference">Video/image Inference</button>
+                </div>
+    <div class="submition">
+                <button type="submit" id="live-inference" class="live-inference">Live Inference</button>
+                </div>-->
+                <div class="button-container">
+        <button class="btn" id="video-image-inference">Video/Image Inference</button>
+        <button class="btn" id="live-inference">Live Inference</button>
+    </div>
+    <video id="camera" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+
+</body>
+</html>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+           <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+
+            /*colorpicker*/
+            $('.demo').each(function () {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  $(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+
+                    change: function (value, opacity) {
+                        if (!value) return;
+                        if (opacity) value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+        </script>
+{% endblock %}

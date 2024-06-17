@@ -33,6 +33,10 @@ import smtplib  # Importing SMTPException for handling email sending errors
 
 from django.shortcuts import render, get_object_or_404
 
+import base64
+from PIL import Image
+from io import BytesIO
+
 from django.contrib.auth import update_session_auth_hash
 
 from django.urls import reverse
@@ -310,7 +314,7 @@ def tables(request):
 
 
 
-def grid(request):
+def testmodel(request):
     if whologged == 1:
         user_id = request.session.get('user_id', 'default_value')
         user = User_info.objects.get(reaccelai_id=user_id)
@@ -318,7 +322,7 @@ def grid(request):
     if whologged == 2:
         iamuser = admin_iam_users.objects.get(iam_user_name=iam)
         context = {'user': iamuser}
-    return render(request, "dashboard/grid.html", context)
+    return render(request, "dashboard/testmodel.html", context)
 
 
 
@@ -330,9 +334,10 @@ def History(request):
         user = User_info.objects.get(reaccelai_id=user_id)
         context['user'] = user
     if whologged == 2:
+        user_id = request.session.get('user_id', 'default_value')
         iamuser = admin_iam_users.objects.get(iam_user_name=iam)
         context['user'] = iamuser
-    data = login_at.objects.values('email','user_name', 'login_at')
+    data = login_at.objects.filter(reaccel_id=user_id).values('email','user_name', 'login_at')
     context['data'] = data
     return render(request, "dashboard/History.html",context)
 
@@ -840,7 +845,7 @@ def helpme(request):
     return render(request, 'dashboard/help.html',context)
 
 def helpme_send_query(request):
-    if request.method == 'POST':
+    """if request.method == 'POST':
         print('help out')
         data = json.loads(request.body)
         form_type = data.get('form_type')
@@ -848,7 +853,7 @@ def helpme_send_query(request):
         if form_type == 'help':
             print('help in')
             user_id = request.session.get('user_id', 'default_value')
-            data = User_info.objects.filter(reaccel_id=user_id).values('email')
+            data = User_info.objects.filter(reaccelai_id=user_id).values('email')
         
             if data.email:
                 print('help data')
@@ -860,7 +865,38 @@ def helpme_send_query(request):
                 else:
                     return JsonResponse({'success': False})
             else:
-                return JsonResponse({'success': False})
+                return JsonResponse({'success': False})"""
+    if request.method == 'POST':
+        try:
+            print('help out')
+            data = json.loads(request.body)
+            form_type = data.get('form_type')
+            ticket_raised = data.get('ticket_raised')
+            
+            if form_type == 'help':
+                print('help in')
+                user_id = request.session.get('user_id', 'default_value')
+                user_data = User_info.objects.filter(reaccelai_id=user_id).values('email').first()
+
+                if user_data and user_data.get('email'):
+                    print('help data')
+                    sent_status = send_query(user_data['email'], ticket_raised)
+                    print("ticket sent")
+                    print(sent_status)
+                    if sent_status == 1:
+                        return JsonResponse({'success': True})
+                    else:
+                        return JsonResponse({'success': False})
+                else:
+                    return JsonResponse({'success': False, 'error': 'Email not found'})
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid form type'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'Invalid JSON'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
 
     
@@ -873,7 +909,7 @@ def send_query(email,ticket_raised):
     try:
         sent_status=send_mail(
             'ReaccelAi Ticket Raised',
-            f'ReaccelAi Ticket Raised by{email} issue is:- {ticket_raised}',
+            f'ReaccelAi Ticket Raised by {email} issue is:- {ticket_raised}',
             'pinniboinarajesh640@gmail.com',
             [support1,support2],
             fail_silently=False,
@@ -1008,3 +1044,23 @@ def remove_iamuser_ajax(request):
     data = admin_iam_users.objects.filter(reaccel_id=user_id).values('iam_user_name','iam_user_password', 'access_permissions','user_createdon','description')
     context['data'] = data
     return render(request, "dashboard/iam.html",context)
+
+def process_image(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        image_data = data.get('image')
+
+        if image_data:
+            # Decode the base64 image data
+            image_data = image_data.split(",")[1]
+            image_data = base64.b64decode(image_data)
+            image = Image.open(BytesIO(image_data))
+
+            # Perform image recognition here
+            #result = your_image_recognition_function(image)
+
+            #return JsonResponse({'success': True, 'result': result})
+        else:
+            return JsonResponse({'success': False, 'error': 'No image data provided'})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})

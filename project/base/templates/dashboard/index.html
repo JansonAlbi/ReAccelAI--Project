@@ -134,7 +134,7 @@
                             <div class="card-body">
                                 <div class="d-md-flex align-items-center">
                                     <div>
-                                        <h4 class="card-title">Login Analysis</h4>
+                                        <h4 class="card-title">Analysis</h4>
                                         <!--h5 class="card-subtitle">Overview of Latest Month</h5-->
 
 <html>
@@ -155,21 +155,91 @@
             width: 80%;
             height: 400px;
         }
+        .profile-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dc3545;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-left: 100px;
+    position: relative;
+    margin-bottom:20px;
+    margin-top:50px;
+    left: 10px;
+}
+
+.profile-container-two {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dc3545;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-left: 200px;
+    position: relative;
+    margin-bottom:20px;
+    left: 10px;
+}
+
+.profile-container-three {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #dc3545;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-left: 300px;
+    position: relative;
+    margin-bottom:20px;
+    left: 10px;
+}
+
+.profile-container-three:hover{
+    background-color: skyblue;
+}
+.profile-container-two:hover{
+    background-color: yellow;
+}
+.profile-container:hover{
+    background-color: #D11DCF;
+}
+p{
+    font-size:90px;
+}
     </style>
 </head>
 <body>
     <div class="container">
         <!--h1>Dashboard</h1-->
-        <div class="chart-container">
-            <canvas id="loginChart"></canvas>
+        <div class="profile-container">
+            <h1>Login Count</h1>
+            <p>67</p>
+            <!--canvas id="loginChart"></canvas-->
         </div>
-        <div>
+        <div class="profile-container-two">
+            <h1>Projects Count</h1>
+            <p>1</p>
+            <!--canvas id="loginChart"></canvas-->
+        </div>
+        <div class="profile-container-three">
+            <h1>IAM User's</h1>
+            <p>2</p>
+            <!--canvas id="loginChart"></canvas-->
+        </div>
+        <!--div>
             <h2>Debug Data</h2>
             <pre>{{ data_json }}</pre>
-        </div>
+        </div-->
     </div>
     <script>
-        const loginCtx = document.getElementById('loginChart').getContext('2d');
+        /*const loginCtx = document.getElementById('loginChart').getContext('2d');
         const loginData = JSON.parse('{{ data_json|escapejs }}');
         
         const loginChart = new Chart(loginCtx, {
@@ -197,7 +267,7 @@
                     }
                 }
             }
-        });
+        });*/
     </script>
 </body>
 </html>
